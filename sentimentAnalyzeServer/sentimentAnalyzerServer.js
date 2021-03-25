@@ -1,5 +1,6 @@
 const express = require('express');
 const app = new express();
+const getNLU=require('./getNLU');
 
 app.use(express.static('client'))
 
@@ -11,6 +12,12 @@ app.get("/",(req,res)=>{
   });
 
 app.get("/url/emotion", (req,res) => {
+    .then(listModelsResults => {
+    console.log(JSON.stringify(listModelsResults, null, 2));
+  })
+  .catch(err => {
+    console.log('error:', err);
+  });
 
     return res.send({"happy":"90","sad":"10"});
 });
